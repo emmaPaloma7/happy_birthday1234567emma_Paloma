@@ -13,19 +13,29 @@
         
         body {
             font-family: 'Courier New', monospace;
-            background: url('https://i.pinimg.com/736x/8e/c6/e4/8ec6e42e5374d8026a861b748129b2a8.jpg') no-repeat center center fixed;
-            background-size: cover;
+            background-color: var(--noir);
             color: white;
             margin: 0;
             padding: 0;
             text-align: center;
-            transition: background-image 0.5s ease-in-out;
             overflow-x: hidden;
             min-height: 100vh;
         }
         
+        /* Nouveau style pour les backgrounds */
+        .bg-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+            opacity: 0.7;
+        }
+        
         .overlay {
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.6);
             min-height: 100vh;
             padding: 20px;
             position: relative;
@@ -159,28 +169,23 @@
         }
         
         /* Images de fond spécifiques */
-        .bg-accueil {
+        #accueil-bg {
             background-image: url('https://i.pinimg.com/736x/8e/c6/e4/8ec6e42e5374d8026a861b748129b2a8.jpg');
         }
         
-        .bg-qualites {
+        #qualites-bg {
             background-image: url('https://i.pinimg.com/736x/70/fb/d3/70fbd3abba7ae41f8ed37a42a61f75c1.jpg');
         }
         
-        .bg-defauts {
+        #defauts-bg {
             background-image: url('https://i.pinimg.com/736x/30/53/91/3053910e1732b60e79ce20ef6db3b60d.jpg');
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-attachment: fixed;
-            background-color: #000;
         }
         
-        .bg-souvenirs {
+        #souvenirs-bg {
             background-image: url('https://i.pinimg.com/736x/42/c1/d0/42c1d0faacb5efefbcd564aed990cefc.jpg');
         }
         
-        .bg-resume {
+        #resume-bg {
             background-image: url('https://i.pinimg.com/474x/9a/d6/53/9ad653c20893df43c2dde56f45aede17.jpg');
         }
         
@@ -327,20 +332,16 @@
                 font-size: 2.5em;
             }
         }
-        
-        /* Correction pour iOS */
-        @supports (-webkit-touch-callout: none) {
-            body {
-                background-attachment: scroll;
-            }
-            
-            .bg-defauts {
-                background-attachment: scroll;
-            }
-        }
     </style>
 </head>
-<body class="bg-accueil">
+<body>
+    <!-- Images de fond pour chaque section -->
+    <img id="accueil-bg" class="bg-image" style="display:block;">
+    <img id="qualites-bg" class="bg-image" style="display:none;">
+    <img id="defauts-bg" class="bg-image" style="display:none;">
+    <img id="souvenirs-bg" class="bg-image" style="display:none;">
+    <img id="resume-bg" class="bg-image" style="display:none;">
+
     <!-- Audio elements for background music -->
     <audio id="accueilMusic" loop>
         <source src="art_du_savoir.mp3" type="audio/mpeg">
@@ -368,7 +369,7 @@
 
     <!-- Page d'accueil -->
     <div id="accueil" class="overlay">
-        <img src="https://i.imgur.com/JQlY9zP.png" class="bandage" alt="Bandage Dazai">
+        <img src="https://i.pinimg.com/736x/70/fb/d3/70fbd3abba7ae41f8ed37a42a61f75c1.jpg" class="bandage" alt="Bandage Dazai">
         
         <h1>🎉 Joyeux Anniversaire Vanhée-IKOLO Gédeon ! 🎂</h1>
         <p class="quote"><em>"Les jours avec toi sont moins ennuyeux qu'un suicide raté."</em> 😄</p>
@@ -404,7 +405,7 @@
     <!-- Page Qualités -->
     <div id="qualites" class="overlay" style="display:none;">
         <a href="#accueil" class="back-btn">←</a>
-        <img src="https://i.imgur.com/JQlY9zP.png" class="bandage" alt="Bandage Dazai">
+        <img src="https://i.pinimg.com/736x/70/fb/d3/70fbd3abba7ae41f8ed37a42a61f75c1.jpg" class="bandage" alt="Bandage Dazai">
         
         <h1>🎯 Tes Qualités</h1>
         
@@ -423,28 +424,31 @@
     <!-- Page Défauts -->
     <div id="defauts" class="overlay" style="display:none;">
         <a href="#accueil" class="back-btn">←</a>
-        <img src="https://i.imgur.com/JQlY9zP.png" class="bandage" alt="Bandage Dazai">
+        <img src="https://i.pinimg.com/736x/42/c1/d0/42c1d0faacb5efefbcd564aed990cefc.jpg" class="bandage" alt="Bandage Dazai">
         
         <h1>😅 Tes "Défauts"</h1>
         
         <div class="page-content">
             <h3>Tes défauts charmants :</h3>
             <ul>
-                <li>Tu es un sacré menteur. Tu sais manipuler les mots  parfois pour faire rire, parfois pour blesser, souvent pour éviter la vérité. Tu as détruit des choses, des liens, des gens. Et pourtant, malgré tout ça, je crois que tu peux changer. Que tu peux apprendre à construire au lieu de briser. Ce serait peut-être ton plus beau cadeau d'anniversaire : devenir un homme vrai.
 </li>
                 <li>Tu as ce vide en toi qui te pousse à toujours vouloir plus, même quand tu as déjà beaucoup. La fidélité n'a jamais été ton fort, et tu laisses souvent des cœurs blessés derrière toi. Tu fais mal, parfois sans même t'en rendre compte.</li>
                 <li>Tu es souvent pénible, tu prends peu en compte ce que les autres ressentent, comme si leurs émotions comptaient moins que les tiennes. Tu es centré sur toi, égoïste parfois, et tu t'abrites derrière l'excuse du "c'est trop dur de changer" pour continuer à blesser. Mais au fond, ce n'est pas une excuse, juste une fuite. Ce n'est pas que tu ne peux pas changer — c'est que tu ne veux pas. Et ça, c'est un choix.
 </li>
                 <li>Tu as choisi de rester dans le mensonge plutôt que d'affronter la vérité, parce que c'est plus simple, plus confortable. Devenir vrai demande du courage, et tu refuses ce chemin. Mais ce refus, c'est une fuite, pas une identité, tu gaches celui que t'es vraiment derriere un monstre de mensonge. 
 </li>
-            </ul>
+           <li>
+                 <li>Tu es un  menteur. Tu sais manipuler les mots  parfois pour faire rire, parfois pour blesser, souvent pour éviter la vérité. Tu as détruit des choses, des liens, des gens. Et pourtant, malgré tout ça, je crois que tu peux changer. Que tu peux apprendre à construire au lieu de briser. Ce serait peut-être ton plus beau cadeau d'anniversaire : devenir un homme vrai.
+</li>
+    
+</ul>
         </div>
     </div>
     
     <!-- Page Souvenirs -->
     <div id="souvenirs" class="overlay" style="display:none;">
         <a href="#accueil" class="back-btn">←</a>
-        <img src="https://i.imgur.com/JQlY9zP.png" class="bandage" alt="Bandage Dazai">
+        <img src="https://i.pinimg.com/474x/9a/d6/53/9ad653c20893df43c2dde56f45aede17.jpg" class="bandage" alt="Bandage Dazai">
         
         <h1>📸 Nos Souvenirs</h1>
         
@@ -498,11 +502,11 @@
     <script>
         // Images de fond pour chaque section
         const backgrounds = {
-            'accueil': 'bg-accueil',
-            'qualites': 'bg-qualites',
-            'defauts': 'bg-defauts',
-            'souvenirs': 'bg-souvenirs',
-            'resume': 'bg-resume'
+            'accueil': 'accueil-bg', 
+            'qualites': 'qualites-bg',
+            'defauts': 'defauts-bg',
+            'souvenirs': 'souvenirs-bg',
+            'resume': 'resume-bg'
         };
 
         // Musiques pour chaque section
@@ -520,17 +524,23 @@
 
         // Gestion de la navigation
         window.onhashchange = function() {
-            // Cache toutes les pages
+            // Cache toutes les pages et tous les backgrounds
             document.querySelectorAll('.overlay').forEach(page => {
                 page.style.display = 'none';
+            });
+            document.querySelectorAll('.bg-image').forEach(bg => {
+                bg.style.display = 'none';
             });
             
             // Affiche la page correspondante
             const pageId = window.location.hash.substring(1) || 'accueil';
             document.getElementById(pageId).style.display = 'block';
             
-            // Change le fond d'écran
-            document.body.className = backgrounds[pageId] || 'bg-accueil';
+            // Affiche le background correspondant
+            const bgId = backgrounds[pageId];
+            if (bgId) {
+                document.getElementById(bgId).style.display = 'block';
+            }
             
             // Gestion de la musique
             manageMusic(pageId);
@@ -620,7 +630,7 @@
                     isMusicPlaying = true;
                     document.getElementById('audioControl').textContent = '⏸️';
                 }).catch(e => {
-                    console.log("Erreur de lecture audio automatique: " + e);
+                     console.log("Erreur de lecture audio automatique: " + e);
                     // Certains navigateurs bloquent l'autoplay, on affiche un message
                     document.getElementById('audioControl').textContent = '▶️';
                     isMusicPlaying = false;
