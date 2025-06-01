@@ -517,7 +517,7 @@
 
         // Variable pour suivre la musique actuelle
         let currentMusic = null;
-        let isMusicPlaying = true; // La musique démarre automatiquement
+        let isMusicPlaying = false;
 
         // Gestion de la navigation
         window.onhashchange = function() {
@@ -551,12 +551,21 @@
                 currentMusic.currentTime = 0;
             }
             
-            // Joue la musique de la nouvelle page si elle existe et si la musique est activée
-            if (musics[pageId] && isMusicPlaying) {
+            // Joue la musique de la nouvelle page si elle existe
+            if (musics[pageId]) {
                 currentMusic = musics[pageId];
-                currentMusic.play().catch(e => {
-                    console.log("Erreur de lecture audio: " + e);
-                });
+                const promise = currentMusic.play();
+                
+                if (promise !== undefined) {
+                    promise.then(_ => {
+                        isMusicPlaying = true;
+                        document.getElementById('audioControl').textContent = '⏸️';
+                    }).catch(error => {
+                        // Si l'autoplay échoue, on attend un clic utilisateur
+                        document.getElementById('audioControl').textContent = '▶️';
+                        isMusicPlaying = false;
+                    });
+                }
             }
         }
         
@@ -619,24 +628,36 @@
                 }
             }, 800);
 
-            // Active la musique automatiquement
-            try {
-                const pageId = window.location.hash.substring(1) || 'accueil';
-                currentMusic = musics[pageId];
-                currentMusic.play().then(() => {
+            // Tente de démarrer la musique automatiquement
+            const pageId = window.location.hash.substring(1) || 'accueil';
+            currentMusic = musics[pageId];
+            
+            // Réinitialise et tente de jouer
+            currentMusic.currentTime = 0;
+            const promise = currentMusic.play();
+            
+            if (promise !== undefined) {
+                promise.then(_ => {
+                    // Lecture réussie
                     isMusicPlaying = true;
                     document.getElementById('audioControl').textContent = '⏸️';
-                }).catch(e => {
-                     console.log("Erreur de lecture audio automatique: " + e);
-                    // Certains navigateurs bloquent l'autoplay, on affiche un message
+                }).catch(error => {
+                    // Lecture échouée - on attend un clic utilisateur
                     document.getElementById('audioControl').textContent = '▶️';
                     isMusicPlaying = false;
+                    
+                    // On active le son au premier clic n'importe où sur la page
+                    document.body.addEventListener('click', function firstClick() {
+                        currentMusic.play().then(_ => {
+                            isMusicPlaying = true;
+                            document.getElementById('audioControl').textContent = '⏸️';
+                        });
+                        document.body.removeEventListener('click', firstClick);
+                    }, { once: true });
                 });
-            } catch (e) {
-                console.log("Erreur d'initialisation audio: " + e);
             }
 
-            // Contrôle audio (uniquement pause/play)
+            // Contrôle audio
             document.getElementById('audioControl').addEventListener('click', function() {
                 if (isMusicPlaying) {
                     // Mettre en pause
