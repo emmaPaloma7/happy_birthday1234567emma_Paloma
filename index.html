@@ -1,612 +1,586 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yacht Shiniblood - Royaume des Élus de l'Ombre</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Marcellus+SC&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --noir-velours: #0a0a0a;
-            --doré-royal: #D4AF37;
-            --doré-clair: #FFD700;
-            --pourpre: #4a0a4a;
-            --sang: #8B0000;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yacht Shiniblood – Royaume des Élus de l’Ombre</title>
+  <!-- Polices & icônes -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Marcellus+SC&display=swap" rel="stylesheet" />
 
-        /* Fond étoilé animé */
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: var(--noir-velours);
-            color: white;
-            font-family: 'Marcellus SC', serif;
-            overflow-x: hidden;
-            position: relative;
-        }
+  <style>
+    :root {
+      --noir-velours: #0a0a0a;
+      --doré-royal: #D4AF37;
+      --doré-clair: #FFD700;
+      --doré-pâle: rgba(212, 175, 55, 0.2);
+      --sang: #8B0000;
+    }
 
-        .stars {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
-        }
+    /* ===== Base ===== */
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Marcellus SC', serif;
+      background-color: var(--noir-velours);
+      color: white;
+      overflow-x: hidden;
+      position: relative;
+      /* Image de fond fixe */
+      background-image: url('https://i.pinimg.com/736x/5b/39/31/5b3931fa354ae04038650be2003ab3a4.jpg');
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+      line-height: 1.6;
+    }
 
-        .star {
-            position: absolute;
-            background-color: var(--doré-clair);
-            border-radius: 50%;
-            animation: twinkle var(--duration) infinite ease-in-out;
-            opacity: 0;
-        }
+    /* ===== Fond étoilé animé ===== */
+    .stars {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      overflow: hidden;
+      z-index: -2;
+    }
+    .star {
+      position: absolute;
+      background-color: var(--doré-clair);
+      border-radius: 50%;
+      animation: twinkle var(--twinkle-duration) infinite ease-in-out;
+      opacity: 0;
+    }
+    @keyframes twinkle {
+      0%,100% { opacity: .25; transform: scale(.4); }
+      50%      { opacity: 1;   transform: scale(1); }
+    }
 
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.2; transform: scale(0.5); }
-            50% { opacity: 1; transform: scale(1); }
-        }
+    /* ===== Overlay sombre pour la lisibilité ===== */
+    .overlay {
+      background-color: rgba(10,10,10,.85);
+      min-height: 100vh;
+      width: 100%;
+    }
 
-        /* En-tête royal */
-        header {
-            background: linear-gradient(to bottom, rgba(10, 10, 10, 0.9), rgba(74, 10, 74, 0.7));
-            padding: 2rem 0;
-            text-align: center;
-            border-bottom: 3px solid var(--doré-royal);
-            position: relative;
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
-        }
+    /* ===== En‑tête ===== */
+    header {
+      background: linear-gradient(to bottom, rgba(10,10,10,.9), rgba(10,10,10,.7));
+      padding: 2rem 1rem;
+      text-align: center;
+      border-bottom: 3px solid var(--doré-royal);
+      box-shadow: 0 0 30px rgba(212,175,55,.3);
+    }
+    .logo {
+      font-family: 'Cinzel Decorative', cursive;
+      font-size: clamp(2.5rem, 8vw, 4rem);
+      background: linear-gradient(to right, var(--doré-royal), var(--doré-clair));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 20px rgba(212,175,55,.5);
+      letter-spacing: 2px;
+      margin: 0;
+      line-height: 1.2;
+    }
+    .slogan {
+      font-family: 'Cinzel Decorative', cursive;
+      font-size: clamp(1.1rem, 3.5vw, 1.6rem);
+      color: var(--doré-clair);
+      text-shadow: 0 0 10px rgba(212,175,55,.5);
+      margin-top: 1rem;
+      font-style: italic;
+      letter-spacing: 1px;
+    }
 
-        .logo-container {
-            position: relative;
-            display: inline-block;
-        }
+    /* ===== Sections principales ===== */
+    section {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 1.5rem;
+      background: rgba(10,10,10,.85);
+      border: 1px solid var(--doré-royal);
+      border-radius: 5px;
+      box-shadow: 0 0 25px rgba(212,175,55,.2);
+      position: relative;
+    }
+    section::before {
+      content: "";
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(to right, transparent, var(--doré-royal), transparent);
+    }
 
-        .logo {
-            font-family: 'Cinzel Decorative', cursive;
-            font-size: 4rem;
-            background: linear-gradient(to right, var(--doré-royal), var(--doré-clair));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
-            letter-spacing: 3px;
-            margin: 0;
-            position: relative;
-            z-index: 1;
-        }
+    /* Animation fade‑in */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(25px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .animate { opacity: 0; animation: fadeIn 1s forwards; }
+    .delay-1 { animation-delay: .3s; }
+    .delay-2 { animation-delay: .6s; }
+    .delay-3 { animation-delay: .9s; }
 
-        .logo::after {
-            content: "✨";
-            position: absolute;
-            top: -20px;
-            left: -30px;
-            font-size: 2rem;
-            animation: sparkle 2s infinite;
-        }
+    /* ===== Bouton royal ===== */
+    .btn-royal {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--doré-royal), var(--doré-clair));
+      color: var(--noir-velours);
+      padding: 0.8rem 1.5rem;
+      border-radius: 3px;
+      font-family: 'Cinzel Decorative', cursive;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 1px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 0 15px rgba(212,175,55,.5);
+      transition: transform .3s, box-shadow .3s;
+      position: relative;
+      overflow: hidden;
+      min-width: 200px;
+      text-align: center;
+      text-decoration: none;
+      margin: 0.5rem 0;
+    }
+    .btn-royal:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 25px rgba(212,175,55,.8);
+    }
+    /* Variante transparente */
+    .btn-royal.secondary {
+      background: transparent;
+      color: var(--doré-clair);
+      border: 1px solid var(--doré-royal);
+    }
+    .btn-royal.secondary:hover {
+      background: rgba(212,175,55,.1);
+    }
 
-        .logo::before {
-            content: "✨";
-            position: absolute;
-            bottom: -20px;
-            right: -30px;
-            font-size: 2rem;
-            animation: sparkle 3s infinite 1s;
-        }
+    /* ===== Formulaire ===== */
+    .form-group { margin-bottom: 1.5rem; }
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: var(--doré-clair);
+      font-size: 1rem;
+      letter-spacing: 1px;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 0.8rem;
+      background: rgba(10,10,10,.85);
+      border: 1px solid var(--doré-royal);
+      color: #fff;
+      font-family: 'Marcellus SC', serif;
+      font-size: 1rem;
+      border-radius: 3px;
+      transition: border-color .3s, box-shadow .3s;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--doré-clair);
+      box-shadow: 0 0 12px rgba(212,175,55,.3);
+    }
+    select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23D4AF37'%3e%3cpath d='M7 10l5 5 5-5z' /%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right 0.7rem center;
+      background-size: 1.2em auto;
+    }
+    select[multiple] {
+      height: auto;
+      padding: 0.5rem;
+    }
+    select[multiple] option {
+      padding: 0.5rem;
+      margin: 0.2rem 0;
+      background: var(--noir-velours);
+    }
+    .phone-input {
+      display: flex;
+      align-items: center;
+    }
+    .phone-input select {
+      flex: 0 0 80px;
+      margin-right: 10px;
+    }
+    .phone-input input {
+      flex: 1;
+    }
 
-        @keyframes sparkle {
-            0%, 100% { opacity: 0.5; transform: scale(0.8); }
-            50% { opacity: 1; transform: scale(1.2); }
-        }
+    /* ===== Liste des inscriptions ===== */
+    .inscriptions-list {
+      display: grid; 
+      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fill,minmax(250px,1fr));
+      margin-top: 1.5rem;
+    }
+    .inscription-card {
+      background: rgba(20, 20, 20, 0.7);
+      border: 1px solid var(--doré-royal);
+      padding: 1.2rem;
+      border-radius: 5px;
+    }
+    .inscription-name {
+      font-family: 'Cinzel Decorative', cursive;
+      color: var(--doré-clair);
+      font-size: 1.2rem;
+      margin: 0 0 0.5rem 0;
+    }
+    .inscription-detail { 
+      font-size: 0.9rem; 
+      margin-bottom: 0.3rem;
+      word-break: break-word;
+    }
+    .inscription-detail strong {
+      color: var(--doré-clair);
+    }
 
-        .slogan {
-            font-family: 'Cinzel Decorative', cursive;
-            font-size: 1.5rem;
-            color: var(--doré-clair);
-            letter-spacing: 2px;
-            margin-top: 1rem;
-            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
-            font-style: italic;
-        }
+    /* ===== Pied de page ===== */
+    footer {
+      background: linear-gradient(to top, rgba(10,10,10,.9), rgba(10,10,10,.7));
+      text-align: center;
+      padding: 2rem 1rem;
+      border-top: 3px solid var(--doré-royal);
+      margin-top: 3rem;
+    }
+    .social-links { 
+      margin-bottom: 1.5rem;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .social-links a {
+      color: var(--doré-clair);
+      font-size: 1.5rem;
+      transition: transform .3s, color .3s, text-shadow .3s;
+      display: inline-block;
+    }
+    .social-links a:hover {
+      transform: translateY(-4px);
+      color: #fff;
+      text-shadow: 0 0 14px var(--doré-clair);
+    }
+    .copyright {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.7);
+    }
 
-        /* Contenu principal */
-        .container {
-            max-width: 1200px;
-            margin: 3rem auto;
-            padding: 2rem;
-            background: rgba(10, 10, 10, 0.7);
-            border: 1px solid var(--doré-royal);
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
-            backdrop-filter: blur(5px);
-            border-radius: 5px;
-            position: relative;
-            overflow: hidden;
-        }
+    /* ===== Messages d'erreur ===== */
+    .error-message {
+      color: #ff6b6b;
+      font-size: 0.85rem;
+      margin-top: 0.3rem;
+      display: none;
+    }
+    .input-error {
+      border-color: #ff6b6b !important;
+    }
 
-        .container::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(to right, transparent, var(--doré-royal), transparent);
-        }
-
-        h1, h2, h3 {
-            font-family: 'Cinzel Decorative', cursive;
-            color: var(--doré-royal);
-            border-bottom: 1px solid var(--doré-royal);
-            padding-bottom: 0.5rem;
-            text-shadow: 0 0 5px rgba(212, 175, 55, 0.3);
-            letter-spacing: 1px;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 2rem;
-            position: relative;
-        }
-
-        h1::after {
-            content: "🌹";
-            position: absolute;
-            right: 0;
-            top: 0;
-        }
-
-        h1::before {
-            content: "🌹";
-            position: absolute;
-            left: 0;
-            top: 0;
-        }
-
-        /* Section d'inscription */
-        .inscription-section {
-            background: linear-gradient(135deg, rgba(26, 0, 26, 0.7), rgba(10, 10, 10, 0.9));
-            padding: 2rem;
-            border: 1px solid var(--doré-royal);
-            border-radius: 5px;
-            margin-bottom: 3rem;
-            box-shadow: 0 0 20px rgba(139, 0, 0, 0.2);
-            position: relative;
-        }
-
-        .inscription-section::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(to right, transparent, var(--doré-royal), transparent);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--doré-clair);
-            font-size: 1.1rem;
-            letter-spacing: 1px;
-        }
-
-        input, select, textarea {
-            width: 100%;
-            padding: 0.8rem;
-            background-color: rgba(10, 10, 10, 0.8);
-            border: 1px solid var(--doré-royal);
-            color: white;
-            font-family: 'Marcellus SC', serif;
-            font-size: 1rem;
-            border-radius: 3px;
-            transition: all 0.3s;
-        }
-
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: var(--doré-clair);
-            box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
-        }
-
-        select {
-            appearance: none;
-            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23D4AF37'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
-            background-repeat: no-repeat;
-            background-position: right 0.7em top 50%;
-            background-size: 1.2em auto;
-        }
-
-        /* Bouton royal */
-        .btn-royal {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--doré-royal), var(--doré-clair));
-            color: var(--noir-velours);
-            padding: 0.8rem 2rem;
-            border-radius: 3px;
-            text-decoration: none;
-            font-family: 'Cinzel Decorative', cursive;
-            font-weight: bold;
-            font-size: 1.1rem;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
-            position: relative;
-            overflow: hidden;
-            letter-spacing: 1px;
-        }
-
-        .btn-royal:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 0 25px rgba(212, 175, 55, 0.8);
-        }
-
-        .btn-royal::before {
-            content: "";
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(
-                to bottom right,
-                rgba(255, 255, 255, 0) 45%,
-                rgba(255, 255, 255, 0.3) 50%,
-                rgba(255, 255, 255, 0) 55%
-            );
-            transform: rotate(30deg);
-            animation: shine 3s infinite;
-        }
-
-        @keyframes shine {
-            0% { left: -50%; }
-            100% { left: 150%; }
-        }
-
-        /* Section des salons */
-        .salons-section {
-            margin-top: 3rem;
-        }
-
-        .salons-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .salon-card {
-            background: linear-gradient(145deg, rgba(26, 0, 26, 0.7), rgba(10, 10, 10, 0.9));
-            border: 1px solid var(--doré-royal);
-            border-radius: 5px;
-            padding: 1.5rem;
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 0 15px rgba(139, 0, 0, 0.1);
-        }
-
-        .salon-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 25px rgba(212, 175, 55, 0.3);
-        }
-
-        .salon-card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: var(--doré-royal);
-        }
-
-        .salon-image {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            border: 1px solid var(--doré-royal);
-            margin-bottom: 1rem;
-            transition: transform 0.3s;
-        }
-
-        .salon-card:hover .salon-image {
-            transform: scale(1.03);
-        }
-
-        .salon-title {
-            font-family: 'Cinzel Decorative', cursive;
-            color: var(--doré-clair);
-            margin-bottom: 0.5rem;
-            font-size: 1.3rem;
-        }
-
-        .salon-description {
-            font-size: 0.95rem;
-            line-height: 1.5;
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        /* Pied de page */
-        footer {
-            background: linear-gradient(to top, rgba(10, 10, 10, 0.9), rgba(74, 10, 74, 0.7));
-            padding: 2rem 0;
-            text-align: center;
-            border-top: 3px solid var(--doré-royal);
-            margin-top: 3rem;
-        }
-
-        .social-links {
-            margin-bottom: 1rem;
-        }
-
-        .social-links a {
-            color: var(--doré-clair);
-            font-size: 1.5rem;
-            margin: 0 1rem;
-            transition: all 0.3s;
-            display: inline-block;
-        }
-
-        .social-links a:hover {
-            transform: translateY(-3px);
-            color: white;
-            text-shadow: 0 0 10px var(--doré-clair);
-        }
-
-        .copyright {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-        }
-
-        /* Animation d'apparition */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .animate {
-            opacity: 0;
-            animation: fadeIn 1s forwards;
-        }
-
-        .delay-1 { animation-delay: 0.2s; }
-        .delay-2 { animation-delay: 0.4s; }
-        .delay-3 { animation-delay: 0.6s; }
-        .delay-4 { animation-delay: 0.8s; }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .logo {
-                font-size: 2.5rem;
-            }
-
-            .slogan {
-                font-size: 1.2rem;
-            }
-
-            .container {
-                padding: 1rem;
-                margin: 1rem;
-            }
-
-            .salons-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    /* ===== Responsive ===== */
+    @media (max-width: 600px) {
+      section {
+        padding: 1.2rem;
+        margin: 1.5rem 0.8rem;
+      }
+      .btn-container {
+        flex-direction: column;
+      }
+      .btn-royal {
+        width: 100%;
+        min-width: unset;
+      }
+      .inscriptions-list {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
-    <!-- Fond étoilé animé -->
-    <div class="stars" id="stars"></div>
+  <!-- Fond étoilé -->
+  <div class="stars" id="stars"></div>
+  <div class="overlay">
 
-    <!-- En-tête royal -->
-    <header>
-        <div class="logo-container">
-            <h1 class="logo">Yacht Shiniblood</h1>
-            <p class="slogan">Le cercle privé des élus de l'ombre et du velours marin</p>
-        </div>
+    <!-- === En-tête === -->
+    <header class="animate">
+      <h1 class="logo">Yacht Shiniblood</h1>
+      <p class="slogan">Le cercle privé des élus de l'ombre et du velours marin</p>
     </header>
 
-    <!-- Contenu principal -->
-    <div class="container animate">
-        <div class="inscription-section animate delay-1">
-            <h2>🌹✨ Registre Royal ✨🌹</h2>
-            
-            <form id="inscriptionForm">
-                <div class="form-group">
-                    <label for="date">🗓 Date d'enregistrement :</label>
-                    <input type="date" id="date" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="heure">⏰ Heure exacte :</label>
-                    <input type="time" id="heure" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="pseudo">👑 Identité (Pseudo) :</label>
-                    <input type="text" id="pseudo" placeholder="Votre nom à bord" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="fonction">💼 Fonction à bord :</label>
-                    <input type="text" id="fonction" placeholder="Votre rôle dans la communauté">
-                </div>
-                
-                <div class="form-group">
-                    <label for="divertissements">🎮 Divertissements préférés :</label>
-                    <select id="divertissements" multiple>
-                        <option value="rp-elegante">RP Réalité Élégante</option>
-                        <option value="rp-aventure">RP Aventures Nobles</option>
-                        <option value="cartes">Cartes Sanguines (Blood Game)</option>
-                        <option value="quizz">Duel d'Esprits (Quizz)</option>
-                    </select>
-                </div>
-                
-                <button type="submit" class="btn-royal">Valider mon enregistrement</button>
-            </form>
-        </div>
+    <!-- === Accueil === -->
+    <section id="accueil" class="animate delay-1">
+      <div class="welcome-message">
+        <p>Nobles visiteurs, soyez les bienvenus à bord du Yacht Shiniblood, vaisseau des âmes distinguées et des cœurs audacieux. Ici, entre velours et sang, s'écrit chaque soir une nouvelle page de notre légende.</p>
+        <p>Dans ce sanctuaire flottant où l'élégance épouse l'aventure, chaque passager devient acteur d'une réalité parallèle. Que vous soyez duelliste des Cartes Sanguines, esprit brillant des Quiz Nocturnes ou prince(esse) des RP Élégants, votre place vous attend.</p>
+        <p>Le yacht hissera ses voiles à la prochaine pleine lune. Inscrivez-vous au Registre Royal pour recevoir votre invitation personnelle.</p>
+      </div>
+      <div class="action-buttons" style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-top:2rem;">
+        <button id="btnInscription" class="btn-royal">
+          <i class="fas fa-feather-alt"></i> S'inscrire au Registre
+        </button>
+        <a href="https://chat.whatsapp.com/LkhCmJzSycXBibFOhK2lka" target="_blank" class="btn-royal secondary">
+          <i class="fab fa-whatsapp"></i> Accéder au Salon Principal
+        </a>
+      </div>
+    </section>
 
-        <div class="salons-section animate delay-2">
-            <h2>📍 Ponts d'Embarquement</h2>
-            <p>Choisissez votre salon de prédilection et hissez la voile vers l'univers Shiniblood :</p>
-            
-            <div class="salons-grid">
-                <!-- Salon 1 -->
-                <div class="salon-card animate delay-3">
-                    <img src="https://i.pinimg.com/originals/7e/3b/8b/7e3b8b8b8b8b8b8b8b8b8b8b8b8b8b8b.jpg" alt="Hall Principal" class="salon-image">
-                    <h3 class="salon-title">🏛 Hall Principal</h3>
-                    <p class="salon-description">Lieu de rassemblement et d'annonce. Si quelque chose se passe sur le yacht, c'est ici que vous l'apprendrez.</p>
-                    <a href="https://chat.whatsapp.com/INVITE_LINK_1" class="btn-royal" target="_blank">Accéder au salon</a>
-                </div>
-                
-                <!-- Salon 2 -->
-                <div class="salon-card animate delay-3">
-                    <img src="https://i.pinimg.com/originals/9e/3b/8b/9e3b8b8b8b8b8b8b8b8b8b8b8b8b8b8b.jpg" alt="Cabine des Filles" class="salon-image">
-                    <h3 class="salon-title">👗 Cabine des Filles</h3>
-                    <p class="salon-description">Refuge doux et discret, où règnent les confidences, le repos et la complicité féminine.</p>
-                    <a href="https://chat.whatsapp.com/INVITE_LINK_2" class="btn-royal" target="_blank">Accéder au salon</a>
-                </div>
-                
-                <!-- Salon 3 -->
-                <div class="salon-card animate delay-4">
-                    <img src="https://i.pinimg.com/originals/8b/3b/8b/8b3b8b8b8b8b8b8b8b8b8b8b8b8b8b8b.jpg" alt="Cabine des Garçons" class="salon-image">
-                    <h3 class="salon-title">🕴 Cabine des Garçons</h3>
-                    <p class="salon-description">Zone privée et détendue, pensée pour les discussions viriles et les siestes bien méritées.</p>
-                    <a href="https://chat.whatsapp.com/INVITE_LINK_3" class="btn-royal" target="_blank">Accéder au salon</a>
-                </div>
-            </div>
+    <!-- === Formulaire d'inscription === -->
+    <section id="inscription" style="display:none;">
+      <h2 style="text-align:center; color: var(--doré-clair);">🌹✨ Registre Royal ✨🌹</h2>
+      <form id="inscriptionForm">
+        <div class="form-group">
+          <label for="date">🗓 Date d'enregistrement :</label>
+          <input type="date" id="date" required />
+          <div class="error-message" id="date-error">Veuillez sélectionner une date valide</div>
         </div>
-    </div>
-    
-    <footer class="animate delay-4">
-        <div class="social-links">
-            <a href="#"><i class="fab fa-whatsapp"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-discord"></i></a>
+        <div class="form-group">
+          <label for="heure">⏰ Heure exacte :</label>
+          <input type="time" id="heure" required />
+          <div class="error-message" id="heure-error">Veuillez sélectionner une heure valide</div>
         </div>
-        <p class="copyright">© 2023 Yacht Shiniblood - Royaume des Élus de l'Ombre</p>
+        <div class="form-group">
+          <label for="pseudo">👑 Identité (Pseudo) :</label>
+          <input type="text" id="pseudo" placeholder="Votre nom à bord" required />
+          <div class="error-message" id="pseudo-error">Veuillez entrer votre pseudo</div>
+        </div>
+        <div class="form-group">
+          <label for="telephone">📱 Numéro de téléphone :</label>
+          <div class="phone-input">
+            <select id="country-code" required>
+              <option value="" disabled selected>Code</option>
+              <option value="+33">+33 (FR)</option>
+              <option value="+1">+1 (US/CA)</option>
+              <option value="+44">+44 (UK)</option>
+              <option value="+49">+49 (DE)</option>
+              <option value="+242">+242 (CG)</option>
+              <option value="+228">+228 (TG)</option>
+              <option value="+229">+229 (BJ)</option>
+              <!-- Ajoutez d'autres codes pays au besoin -->
+            </select>
+            <input type="tel" id="telephone" placeholder="Numéro sans le 0" required pattern="[0-9]{9,15}" />
+          </div>
+          <div class="error-message" id="telephone-error">Veuillez entrer un numéro valide avec code pays</div>
+        </div>
+        <div class="form-group">
+          <label for="fonction">💼 Fonction à bord :</label>
+          <input type="text" id="fonction" placeholder="Votre rôle dans la communauté" />
+        </div>
+        <div class="form-group">
+          <label for="divertissements">🎮 Divertissements préférés :</label>
+          <select id="divertissements" multiple>
+            <option value="rp-elegante">RP Réalité Élégante</option>
+            <option value="rp-aventure">RP Aventures Nobles</option>
+            <option value="cartes">Cartes Sanguines (Blood Game)</option>
+            <option value="quizz">Duel d'Esprits (Quizz)</option>
+          </select>
+        </div>
+        <div style="text-align: center; margin-top: 2rem;">
+          <button type="submit" class="btn-royal"><i class="fas fa-scroll"></i> Signer le Registre</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- === Registre des inscriptions === -->
+    <section class="animate delay-2">
+      <h2 style="text-align:center; color: var(--doré-clair);">📜 Registre des Élus</h2>
+      <p style="text-align:center;">Derniers nobles à avoir rejoint notre communauté :</p>
+      <div id="inscriptionsList" class="inscriptions-list"></div>
+    </section>
+
+    <!-- === Pied de page === -->
+    <footer class="animate delay-3">
+      <div class="social-links">
+        <a href="#"><i class="fab fa-whatsapp"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-discord"></i></a>
+      </div>
+      <p class="copyright">© 2025 Yacht Shiniblood – Royaume des Élus de l'Ombre</p>
     </footer>
 
-    <script>
-        // Création des étoiles
-        function createStars() {
-            const starsContainer = document.getElementById('stars');
-            const starsCount = 100;
-            
-            for (let i = 0; i < starsCount; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
-                
-                // Taille aléatoire
-                const size = Math.random() * 3;
-                star.style.width = `${size}px`;
-                star.style.height = `${size}px`;
-                
-                // Position aléatoire
-                star.style.left = `${Math.random() * 100}%`;
-                star.style.top = `${Math.random() * 100}%`;
-                
-                // Durée d'animation aléatoire
-                star.style.setProperty('--duration', `${5 + Math.random() * 10}s`);
-                
-                // Délai aléatoire
-                star.style.animationDelay = `${Math.random() * 5}s`;
-                
-                starsContainer.appendChild(star);
-            }
-        }
-        
-        // Gestion du formulaire
-        document.getElementById('inscriptionForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Récupération des données
-            const formData = {
-                date: document.getElementById('date').value,
-                heure: document.getElementById('heure').value,
-                pseudo: document.getElementById('pseudo').value,
-                fonction: document.getElementById('fonction').value,
-                divertissements: Array.from(document.getElementById('divertissements').selectedOptions)
-                                    .map(option => option.value)
-            };
-            
-            // Enregistrement dans le localStorage
-            localStorage.setItem('shinibloodInscription', JSON.stringify(formData));
-            
-            // Message de confirmation stylisé
-            const confirmationMsg = `
-                <div style="
-                    position: fixed;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                    background: linear-gradient(135deg, rgba(26, 0, 26, 0.9), rgba(10, 10, 10, 0.95));
-                    padding: 2rem;
-                    border: 2px solid var(--doré-royal);
-                    border-radius: 5px;
-                    box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
-                    z-index: 1000;
-                    max-width: 80%;
-                    text-align: center;
-                ">
-                    <h3 style="color: var(--doré-clair); font-family: 'Cinzel Decorative', cursive; margin-top: 0;">
-                        🌹 Enregistrement Confirmé 🌹
-                    </h3>
-                    <p style="font-size: 1.1rem;">
-                        Bienvenue à bord, <span style="color: var(--doré-clair);">${formData.pseudo}</span> !
-                    </p>
-                    <p>
-                        Votre réservation pour le <span style="color: var(--doré-clair);">${formData.date}</span> 
-                        à <span style="color: var(--doré-clair);">${formData.heure}</span> est enregistrée.
-                    </p>
-                    <button onclick="this.parentElement.remove()" style="
-                        background: var(--doré-royal);
-                        color: var(--noir-velours);
-                        border: none;
-                        padding: 0.5rem 1.5rem;
-                        border-radius: 3px;
-                        margin-top: 1rem;
-                        cursor: pointer;
-                        font-family: 'Cinzel Decorative', cursive;
-                    ">
-                        Magnifique
-                    </button>
-                </div>
-            `;
-            
-            document.body.insertAdjacentHTML('beforeend', confirmationMsg);
-            
-            // Réinitialisation du formulaire
-            this.reset();
-        });
-        
-        // Initialisation
-        document.addEventListener('DOMContentLoaded', function() {
-            createStars();
-            
-            // Animation des éléments
-            const elements = document.querySelectorAll('.animate');
-            elements.forEach((el, index) => {
-                setTimeout(() => {
-                    el.style.opacity = 1;
-                }, 100 * index);
-            });
-            
-            // Date minimale = aujourd'hui
-            const today = new Date().toISOString().split('T')[0];
-            document.getElementById('date').min = today;
-        });
-    </script>
+  </div><!-- overlay end -->
+
+  <!-- ===== Scripts ===== -->
+  <script>
+    /* ========= Création dynamique des étoiles ========= */
+    (function createStars(){
+      const starsContainer=document.getElementById('stars');
+      const TOTAL=120;
+      for(let i=0;i<TOTAL;i++){
+        const star=document.createElement('div');
+        star.className='star';
+        const size=Math.random()*2+.5;
+        star.style.width=size+'px';
+        star.style.height=size+'px';
+        star.style.left=Math.random()*100+'%';
+        star.style.top=Math.random()*100+'%';
+        star.style.setProperty('--twinkle-duration',(3+Math.random()*5)+'s');
+        star.style.animationDelay=(Math.random()*5)+'s';
+        starsContainer.appendChild(star);
+      }
+    })();
+
+    /* ========= Navigation Accueil -> Formulaire ========= */
+    document.getElementById('btnInscription').addEventListener('click',()=>{
+      document.getElementById('accueil').style.display='none';
+      document.getElementById('inscription').style.display='block';
+      window.scrollTo({top:0,behavior:'smooth'});
+    });
+
+    /* ========= Validation du formulaire ========= */
+    function validateForm() {
+      let isValid = true;
+      
+      // Validation de la date
+      const dateInput = document.getElementById('date');
+      if (!dateInput.value) {
+        document.getElementById('date-error').style.display = 'block';
+        dateInput.classList.add('input-error');
+        isValid = false;
+      } else {
+        document.getElementById('date-error').style.display = 'none';
+        dateInput.classList.remove('input-error');
+      }
+      
+      // Validation de l'heure
+      const heureInput = document.getElementById('heure');
+      if (!heureInput.value) {
+        document.getElementById('heure-error').style.display = 'block';
+        heureInput.classList.add('input-error');
+        isValid = false;
+      } else {
+        document.getElementById('heure-error').style.display = 'none';
+        heureInput.classList.remove('input-error');
+      }
+      
+      // Validation du pseudo
+      const pseudoInput = document.getElementById('pseudo');
+      if (!pseudoInput.value.trim()) {
+        document.getElementById('pseudo-error').style.display = 'block';
+        pseudoInput.classList.add('input-error');
+        isValid = false;
+      } else {
+        document.getElementById('pseudo-error').style.display = 'none';
+        pseudoInput.classList.remove('input-error');
+      }
+      
+      // Validation du téléphone
+      const countryCode = document.getElementById('country-code');
+      const telephoneInput = document.getElementById('telephone');
+      const phoneError = document.getElementById('telephone-error');
+      
+      if (!countryCode.value || !telephoneInput.value || !telephoneInput.checkValidity()) {
+        phoneError.style.display = 'block';
+        telephoneInput.classList.add('input-error');
+        countryCode.classList.add('input-error');
+        isValid = false;
+      } else {
+        phoneError.style.display = 'none';
+        telephoneInput.classList.remove('input-error');
+        countryCode.classList.remove('input-error');
+      }
+      
+      return isValid;
+    }
+
+    /* ========= Gestion formulaire ========= */
+    document.getElementById('inscriptionForm').addEventListener('submit', e => {
+      e.preventDefault();
+      
+      if (!validateForm()) return;
+      
+      const countryCode = document.getElementById('country-code').value;
+      const phoneNumber = document.getElementById('telephone').value.trim();
+      const fullPhoneNumber = countryCode + phoneNumber;
+      
+      const formData = {
+        date: document.getElementById('date').value,
+        heure: document.getElementById('heure').value,
+        pseudo: document.getElementById('pseudo').value.trim(),
+        telephone: fullPhoneNumber,
+        fonction: document.getElementById('fonction').value.trim(),
+        divertissements: Array.from(document.getElementById('divertissements').selectedOptions).map(o => o.value),
+        timestamp: new Date().toISOString()
+      };
+
+      /* ---- Sauvegarde LocalStorage ---- */
+      const key = 'shinibloodInscriptions';
+      const inscriptions = JSON.parse(localStorage.getItem(key) || '[]');
+      inscriptions.unshift(formData);
+      localStorage.setItem(key, JSON.stringify(inscriptions));
+
+      /* ---- Construction du message WhatsApp ---- */
+      const message = `✨ *Nouvelle inscription Yacht Shiniblood* ✨\n\n` +
+                    `👑 *Pseudo*: ${formData.pseudo}\n` +
+                    `📱 *Téléphone*: ${formData.telephone}\n` +
+                    `🗓 *Date*: ${formData.date} à ${formData.heure}\n` +
+                    `💼 *Fonction*: ${formData.fonction || 'Non spécifié'}\n` +
+                    `🎮 *Divertissements*: ${formData.divertissements.join(', ') || 'Aucun'}\n\n` +
+                    `_Bienvenue à bord, noble invité._`;
+
+      const numeros = ['22896397239', '242066944791', '242040257484'];
+      numeros.forEach(num => window.open(`https://wa.me/${num}?text=${encodeURIComponent(message)}`, '_blank'));
+      window.open('https://chat.whatsapp.com/LkhCmJzSycXBibFOhK2lka', '_blank');
+
+      /* ---- Fenêtre de confirmation ---- */
+      document.body.insertAdjacentHTML('beforeend', `
+        <div style="position:fixed;top:0;left:0;right:0;bottom:0;background-color:rgba(0,0,0,0.8);display:flex;justify-content:center;align-items:center;z-index:3000;padding:1rem;">
+          <div style="background:linear-gradient(135deg,rgba(20,20,20,0.97),rgba(10,10,10,0.99));padding:2rem;border:2px solid var(--doré-royal);border-radius:5px;box-shadow:0 0 40px rgba(212,175,55,0.7);max-width:100%;width:500px;text-align:center;">
+            <h3 style="color:var(--doré-clair);font-family:'Cinzel Decorative',cursive;margin-top:0;font-size:1.5rem;">🌹 Enregistrement Confirmé 🌹</h3>
+            <p style="font-size:1rem;margin-bottom:1rem;">Bienvenue à bord, <span style="color:var(--doré-clair);font-weight:bold;">${formData.pseudo}</span> !</p>
+            <p style="margin-bottom:1rem;">Votre invitation pour le <span style="color:var(--doré-clair);">${formData.date}</span> à <span style="color:var(--doré-clair);">${formData.heure}</span> est enregistrée.</p>
+            <p style="margin-top:1rem;font-style:italic;font-size:0.9rem;">Un message a été envoyé aux maîtres de cérémonie.</p>
+            <button onclick="this.parentElement.parentElement.remove();location.reload();" class="btn-royal" style="margin-top:1.5rem;">
+              Parfait
+            </button>
+          </div>
+        </div>`);
+
+      updateInscriptionsList();
+    });
+
+    /* ========= Affichage des dernières inscriptions ========= */
+    function updateInscriptionsList() {
+      const container = document.getElementById('inscriptionsList');
+      const inscriptions = JSON.parse(localStorage.getItem('shinibloodInscriptions') || '[]');
+      container.innerHTML = '';
+      
+      if (inscriptions.length === 0) {
+        container.innerHTML = '<p style="text-align:center;grid-column:1/-1;">Aucune inscription pour le moment</p>';
+        return;
+      }
+      
+      inscriptions.slice(0, 6).forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'inscription-card';
+        card.innerHTML = `
+          <h3 class="inscription-name">${item.pseudo}</h3>
+          <p class="inscription-detail"><strong>Date :</strong> ${item.date} à ${item.heure}</p>
+          <p class="inscription-detail"><strong>Fonction :</strong> ${item.fonction || 'Non spécifié'}</p>
+          <p class="inscription-detail"><strong>Activités :</strong> ${item.divertissements.join(', ') || 'Aucune'}</p>
+          <p class="inscription-detail"><small>Inscrit le ${new Date(item.timestamp).toLocaleString('fr-FR')}</small></p>`;
+        container.appendChild(card);
+      });
+    }
+
+    /* ========= Initialisation ========= */
+    window.addEventListener('DOMContentLoaded', () => {
+      // Date min = aujourd'hui
+      document.getElementById('date').min = new Date().toISOString().split('T')[0];
+      updateInscriptionsList();
+      
+      // Démarrer les animations fade‑in
+      document.querySelectorAll('.animate').forEach((el, i) => {
+        setTimeout(() => { el.style.opacity = 1; }, 150 * i);
+      });
+      
+      // Validation en temps réel
+      document.getElementById('date').addEventListener('change', validateForm);
+      document.getElementById('heure').addEventListener('change', validateForm);
+      document.getElementById('pseudo').addEventListener('input', validateForm);
+      document.getElementById('country-code').addEventListener('change', validateForm);
+      document.getElementById('telephone').addEventListener('input', validateForm);
+    });
+  </script>
 </body>
 </html>
