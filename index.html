@@ -584,86 +584,89 @@
 
   <!-- ===== Scripts ===== -->
   <script>
+
     /* ========= Création dynamique des étoiles ========= */
     (function createStars(){
-      const starsContainer=document.getElementById('stars');
-      const TOTAL=120;
-      for(let i=0;i<TOTAL;i++){
-        const star=document.createElement('div');
-        star.className='star';
-        const size=Math.random()*2+.5;
-        star.style.width=size+'px';
-        star.style.height=size+'px';
-        star.style.left=Math.random()*100+'%';
-        star.style.top=Math.random()*100+'%';
-        star.style.setProperty('--twinkle-duration',(3+Math.random()*5)+'s');
-        star.style.animationDelay=(Math.random()*5)+'s';
+      const starsContainer = document.getElementById('stars');
+      const TOTAL = 120;
+      for(let i = 0; i < TOTAL; i++){
+        const star = document.createElement('div');
+        star.className = 'star';
+        const size = Math.random() * 2 + 0.5;
+        star.style.width = size + 'px';
+        star.style.height = size + 'px';
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+        star.style.setProperty('--twinkle-duration', (3 + Math.random() * 5) + 's');
+        star.style.animationDelay = (Math.random() * 5) + 's';
         starsContainer.appendChild(star);
       }
     })();
 
+    /* ========= Variables pour l'affichage progressif ========= */
+    let displayedCount = 3; // Nombre initial d'inscriptions à afficher
+    const increment = 3; // Nombre d'inscriptions supplémentaires à afficher
+
     /* ========= Navigation Accueil -> Formulaire ========= */
-    document.getElementById('btnInscription').addEventListener('click',()=>{
-      document.getElementById('accueil').style.display='none';
-      document.getElementById('inscription').style.display='block';
-      window.scrollTo({top:0,behavior:'smooth'});
+    document.getElementById('btnInscription').addEventListener('click', () => {
+      document.getElementById('accueil').style.display = 'none';
+      document.getElementById('inscription').style.display = 'block';
+      window.scrollTo({top: 0, behavior: 'smooth'});
     });
 
     /* ========= Validation du formulaire ========= */
-  function validateForm() {
-  let isValid = true;
-  
-  // Validation de la date
-  const dateInput = document.getElementById('date');
-  if (!dateInput.value) {
-    document.getElementById('date-error').style.display = 'block';
-    dateInput.classList.add('input-error');
-    isValid = false;
-  } else {
-    document.getElementById('date-error').style.display = 'none';
-    dateInput.classList.remove('input-error');
-  }
-  
-  // Validation de l'heure
-  const heureInput = document.getElementById('heure');
-  if (!heureInput.value) {
-    document.getElementById('heure-error').style.display = 'block';
-    heureInput.classList.add('input-error');
-    isValid = false;
-  } else {
-    document.getElementById('heure-error').style.display = 'none';
-    heureInput.classList.remove('input-error');
-  }
-  
-  // Validation du pseudo
-  const pseudoInput = document.getElementById('pseudo');
-  if (!pseudoInput.value.trim()) {
-    document.getElementById('pseudo-error').style.display = 'block';
-    pseudoInput.classList.add('input-error');
-    isValid = false;
-  } else {
-    document.getElementById('pseudo-error').style.display = 'none';
-    pseudoInput.classList.remove('input-error');
-  }
+    function validateForm() {
+      let isValid = true;
+      
+      // Validation de la date
+      const dateInput = document.getElementById('date');
+      if (!dateInput.value) {
+        document.getElementById('date-error').style.display = 'block';
+        dateInput.classList.add('input-error');
+        isValid = false;
+      } else {
+        document.getElementById('date-error').style.display = 'none';
+        dateInput.classList.remove('input-error');
+      }
+      
+      // Validation de l'heure
+      const heureInput = document.getElementById('heure');
+      if (!heureInput.value) {
+        document.getElementById('heure-error').style.display = 'block';
+        heureInput.classList.add('input-error');
+        isValid = false;
+      } else {
+        document.getElementById('heure-error').style.display = 'none';
+        heureInput.classList.remove('input-error');
+      }
+      
+      // Validation du pseudo
+      const pseudoInput = document.getElementById('pseudo');
+      if (!pseudoInput.value.trim()) {
+        document.getElementById('pseudo-error').style.display = 'block';
+        pseudoInput.classList.add('input-error');
+        isValid = false;
+      } else {
+        document.getElementById('pseudo-error').style.display = 'none';
+        pseudoInput.classList.remove('input-error');
+      }
 
-  // On ne valide plus du tout le numéro de téléphone
-  // Juste on s'assure qu'il y a quelque chose d'écrit
-  const telephoneInput = document.getElementById('telephone');
-  if (!telephoneInput.value.trim()) {
-    document.getElementById('telephone-error').style.display = 'block';
-    telephoneInput.classList.add('input-error');
-    isValid = false;
-  } else {
-    document.getElementById('telephone-error').style.display = 'none';
-    telephoneInput.classList.remove('input-error');
-  }
+      // Validation du téléphone
+      const telephoneInput = document.getElementById('telephone');
+      if (!telephoneInput.value.trim()) {
+        document.getElementById('telephone-error').style.display = 'block';
+        telephoneInput.classList.add('input-error');
+        isValid = false;
+      } else {
+        document.getElementById('telephone-error').style.display = 'none';
+        telephoneInput.classList.remove('input-error');
+      }
 
-  return isValid;
-}
-  
+      return isValid;
+    }
 
     /* ========= Gestion formulaire ========= */
-    document.getElementById('inscriptionForm').addEventListener('submit', async e => {
+    document.getElementById('inscriptionForm').addEventListener('submit', async function(e) {
       e.preventDefault();
       
       if (!validateForm()) return;
@@ -678,14 +681,14 @@
         pseudo: document.getElementById('pseudo').value.trim(),
         telephone: fullPhoneNumber,
         fonction: document.getElementById('fonction').value.trim(),
-        divertissements: Array.from(document.getElementById('divertissements').selectedOptions).map(o => o.value),
+        divertissements: Array.from(document.getElementById('divertissements').selectedOptions).map(function(o) { return o.value; }),
         timestamp: new Date().toISOString()
       };
 
       try {
         // Sauvegarde locale
         const key = 'shinibloodInscriptions';
-        const localInscriptions = JSON.parse(localStorage.getItem(key) || '[]');
+     const localInscriptions = JSON.parseJSON.parse(localStorage.getItem(key))|| '[]';
         const allInscriptions = Array.isArray(localInscriptions) ? localInscriptions : [];
         allInscriptions.unshift(formData);
         localStorage.setItem(key, JSON.stringify(allInscriptions));
@@ -703,7 +706,7 @@
         const numeros = ['22896397239', '242040257484', '242066944791'];
         
         // Ouvrir les chats WhatsApp pour chaque numéro
-        numeros.forEach(num => {
+        numeros.forEach(function(num) {
           window.open(`https://wa.me/${num}?text=${encodeURIComponent(message)}`, '_blank');
         });
         
@@ -726,6 +729,9 @@
 
         // Mettre à jour la liste des inscriptions
         updateInscriptionsList();
+        
+        // Sauvegarder le nombre d'inscriptions affichées
+        localStorage.setItem('lastDisplayedCount', displayedCount.toString());
       } catch (error) {
         console.error('Erreur:', error);
         alert("Une erreur est survenue lors de l'enregistrement. Veuillez réessayer.");
@@ -735,16 +741,21 @@
     /* ========= Affichage des inscriptions ========= */
     function updateInscriptionsList() {
       const container = document.getElementById('inscriptionsList');
+      const loadMoreBtn = document.getElementById('loadMoreBtn');
       const inscriptions = JSON.parse(localStorage.getItem('shinibloodInscriptions') || '[]');
       
       container.innerHTML = '';
       
       if (inscriptions.length === 0) {
         container.innerHTML = '<p style="text-align:center;grid-column:1/-1;">Aucune inscription pour le moment</p>';
+        if (loadMoreBtn) loadMoreBtn.style.display = 'none';
         return;
       }
       
-      inscriptions.slice(0, 12).forEach(item => {
+      // Afficher seulement les X premières inscriptions
+      const inscriptionsToShow = inscriptions.slice(0, displayedCount);
+      
+      inscriptionsToShow.forEach(function(item) {
         const card = document.createElement('div');
         card.className = 'inscription-card';
         card.innerHTML = `
@@ -755,19 +766,51 @@
           <p class="inscription-detail"><small>Inscrit le ${new Date(item.timestamp).toLocaleString('fr-FR')}</small></p>`;
         container.appendChild(card);
       });
+      
+      // Afficher le bouton "Voir plus" s'il reste des inscriptions à afficher
+      if (loadMoreBtn) {
+        if (inscriptions.length > displayedCount) {
+          loadMoreBtn.style.display = 'inline-block';
+        } else {
+          loadMoreBtn.style.display = 'none';
+        }
+      }
+    }
+
+    /* ========= Charger plus d'inscriptions ========= */
+    document.getElementById('loadMoreBtn')?.addEventListener('click', function() {
+      const inscriptions = JSON.parse(localStorage.getItem('shinibloodInscriptions') || '[]');
+      displayedCount = Math.min(displayedCount + increment, inscriptions.length);
+      updateInscriptionsList();
+    });
+
+    /* ========= Vérifier et afficher les nouvelles inscriptions au chargement ========= */
+    function checkNewInscriptions() {
+      const lastDisplayedCount = parseInt(localStorage.getItem('lastDisplayedCount') || '3');
+      const inscriptions = JSON.parse(localStorage.getItem('shinibloodInscriptions') || '[]');
+      
+      // Si de nouvelles inscriptions sont arrivées, réinitialiser le compteur
+      if (inscriptions.length > lastDisplayedCount) {
+        displayedCount = 3;
+        localStorage.setItem('lastDisplayedCount', '3');
+      } else {
+        displayedCount = lastDisplayedCount;
+      }
+      
+      updateInscriptionsList();
     }
 
     /* ========= Initialisation ========= */
-    window.addEventListener('DOMContentLoaded', () => {
+    window.addEventListener('DOMContentLoaded', function() {
       // Date min = aujourd'hui
       document.getElementById('date').min = new Date().toISOString().split('T')[0];
       
-      // Charger les inscriptions
-      updateInscriptionsList();
+      // Charger les inscriptions avec la nouvelle logique
+      checkNewInscriptions();
       
       // Démarrer les animations fade‑in
-      document.querySelectorAll('.animate').forEach((el, i) => {
-        setTimeout(() => { el.style.opacity = 1; }, 150 * i);
+      document.querySelectorAll('.animate').forEach(function(el, i) {
+        setTimeout(function() { el.style.opacity = 1; }, 150 * i);
       });
       
       // Validation en temps réel
@@ -780,7 +823,7 @@
       // Gestion audio
       const audio = document.getElementById('backgroundMusic');
       const audioControls = document.getElementById('audioControls');
-      audioControls.addEventListener('click', () => {
+      audioControls.addEventListener('click', function() {
         if (audio.paused) {
           audio.play();
           audioControls.innerHTML = '<i class="fas fa-pause"></i>';
@@ -793,3 +836,5 @@
   </script>
 </body>
 </html>
+    
+  
