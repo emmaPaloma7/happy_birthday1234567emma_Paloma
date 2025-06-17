@@ -386,10 +386,163 @@
         <div class="form-group">
           <label for="telephone">📱 Numéro de téléphone :</label>
           <div class="phone-input">
-            <input type="text" id="country-code" class="country-code-input" placeholder="+Code pays" required pattern="\+[0-9]{1,4}" />
-            <input type="tel" id="telephone" placeholder="Numéro sans le 0" required pattern="[0-9]{9,15}" />
+            <select id="country-code" class="country-code-input" required>
+              <option value="">Code pays</option>
+              <<option value="+93">Afghanistan (+93)</option>
+  <option value="+20">Égypte (+20)</option>
+  <option value="+211">Soudan du Sud (+211)</option>
+  <option value="+212">Maroc (+212)</option>
+  <option value="+213">Algérie (+213)</option>
+  <option value="+216">Tunisie (+216)</option>
+  <option value="+218">Libye (+218)</option>
+  <option value="+220">Gambie (+220)</option>
+  <option value="+221">Sénégal (+221)</option>
+  <option value="+222">Mauritanie (+222)</option>
+  <option value="+223">Mali (+223)</option>
+  <option value="+224">Guinée (+224)</option>
+  <option value="+225">Côte d'Ivoire (+225)</option>
+  <option value="+226">Burkina Faso (+226)</option>
+  <option value="+227">Niger (+227)</option>
+  <option value="+228">Togo (+228)</option>
+  <option value="+229">Bénin (+229)</option>
+  <option value="+230">Maurice (+230)</option>
+  <option value="+231">Liberia (+231)</option>
+  <option value="+232">Sierra Leone (+232)</option>
+  <option value="+233">Ghana (+233)</option>
+  <option value="+234">Nigeria (+234)</option>
+  <option value="+235">Tchad (+235)</option>
+  <option value="+236">Centrafrique (+236)</option>
+  <option value="+237">Cameroun (+237)</option>
+  <option value="+238">Cap-Vert (+238)</option>
+  <option value="+239">São Tomé-et-Príncipe (+239)</option>
+  <option value="+240">Guinée équatoriale (+240)</option>
+  <option value="+241">Gabon (+241)</option>
+  <option value="+242">Congo (+242)</option>
+  <option value="+243">Congo RDC (+243)</option>
+  <option value="+244">Angola (+244)</option>
+  <option value="+245">Guinée-Bissau (+245)</option>
+  <option value="+246">Terres australes françaises (+246)</option>
+  <option value="+247">Îles Malouines (+247)</option>
+  <option value="+248">Seychelles (+248)</option>
+  <option value="+249">Soudan (+249)</option>
+  <option value="+250">Rwanda (+250)</option>
+  <option value="+251">Éthiopie (+251)</option>
+  <option value="+252">Somalie (+252)</option>
+  <option value="+253">Djibouti (+253)</option>
+  <option value="+254">Kenya (+254)</option>
+  <option value="+255">Tanzanie (+255)</option>
+  <option value="+256">Ouganda (+256)</option>
+  <option value="+257">Burundi (+257)</option>
+  <option value="+258">Mozambique (+258)</option>
+  <option value="+260">Zambie (+260)</option>
+  <option value="+261">Madagascar (+261)</option>
+  <option value="+262">La Réunion (+262)</option>
+  <option value="+263">Zimbabwe (+263)</option>
+  <option value="+264">Namibie (+264)</option>
+  <option value="+265">Malawi (+265)</option>
+  <option value="+266">Lesotho (+266)</option>
+  <option value="+267">Botswana (+267)</option>
+  <option value="+268">Swaziland (+268)</option>
+  <option value="+269">Comores (+269)</option>
+  <option value="+290">Îles Santaines (+290)</option>
+  <option value="+291">Érythrée (+291)</option>
+  <option value="+297">Aruba (+297)</option>
+  <option value="+298">Îles Féroé (+298)</option>
+  <option value="+299">Groenland (+299)</option>
+
+  <!-- Amérique -->
+  <option value="+1">États-Unis (+1)</option>
+  <option value="+1242">Bahamas (+1242)</option>
+  <option value="+1246">Barbade (+1246)</option>
+  <option value="+1264">Anguilla (+1264)</option>
+  <option value="+1268">Antigua-et-Barbuda (+1268)</option>
+  <option value="+1473">Grenade (+1473)</option>
+  <option value="+1649">Turks-et-Caicos (+1649)</option>
+  <option value="+1664">Montserrat (+1664)</option>
+  <option value="+1670">Guam (+1670)</option>
+  <option value="+1684">Îles Vierges (+1684)</option>
+  <option value="+1758">Saint-Lucie (+1758)</option>
+  <option value="+1784">Saint-Christophe-et-Niévès (+1784)</option>
+  <option value="+1809">République dominicaine (+1809)</option>
+  <option value="+1849">République dominicaine (+1849)</option>
+  <option value="+1868">Trinité-et-Tobago (+1868)</option>
+  <option value="+1939">Puerto Rico (+1939)</option>
+  <option value="+1">Canada (+1)</option>
+  
+  <!-- Amérique du Sud -->
+  <option value="+54">Argentine (+54)</option>
+  <option value="+591">Bolivie (+591)</option>
+  <option value="+592">Guyana (+592)</option>
+  <option value="+593">Équateur (+593)</option>
+  <option value="+595">Paraguay (+595)</option>
+  <option value="+56">Chili (+56)</option>
+  <option value="+57">Colombie (+57)</option>
+  
+  <!-- Europe -->
+  <option value="+20">Égypte (+20)</option>
+  <option value="+30">Grèce (+30)</option>
+  <option value="+31">Pays-Bas (+31)</option>
+  <option value="+32">Belgique (+32)</option>
+  <option value="+33">France (+33)</option>
+  <option value="+34">Espagne (+34)</option>
+  <option value="+39">Italie (+39)</option>
+  <option value="+355">Albanie (+355)</option>
+  <option value="+44">Royaume-Uni (+44)</option>
+  <option value="+49">Allemagne (+49)</option>
+  <option value="+351">Portugal (+351)</option>
+  <option value="+358">Finlande (+358)</option>
+  <option value="+44">Royaume-Uni (+44)</option>
+  <option value="+420">République tchèque (+420)</option>
+  <option value="+45">Danemark (+45)</option>
+  <option value="+46">Suède (+46)</option>
+  <option value="+48">Pologne (+48)</option>
+  <option value="+353">Irlande (+353)</option>
+  
+  <!-- Asie -->
+  <option value="+7">Russie (+7)</option>
+  <option value="+81">Japon (+81)</option>
+  <option value="+82">Corée du Sud (+82)</option>
+  <option value="+86">Chine (+86)</option>
+  <option value="+91">Inde (+91)</option>
+  <option value="+92">Pakistan (+92)</option>
+  <option value="+66">Thaïlande (+66)</option>
+  <option value="+84">Vietnam (+84)</option>
+  <option value="+855">Cambodge (+855)</option>
+  <option value="+880">Bangladesh (+880)</option>
+  <option value="+853">Macau (+853)</option>
+  <option value="+960">Maldives (+960)</option>
+  <option value="+961">Liban (+961)</option>
+  <option value="+962">Jordanie (+962)</option>
+  <option value="+963">Syrie (+963)</option>
+  <option value="+964">Irak (+964)</option>
+  <option value="+965">Koweït (+965)</option>
+  <option value="+966">Arabie Saoudite (+966)</option>
+  <option value="+967">Yémen (+967)</option>
+  <option value="+968">Oman (+968)</option>
+  <option value="+970">Palestine (+970)</option>
+  <option value="+971">Émirats Arabes Unis (+971)</option>
+  <option value="+972">Israël (+972)</option>
+  <option value="+974">Qatar (+974)</option>
+  <option value="+975">Bhoutan (+975)</option>
+  <option value="+976">Mongolie (+976)</option>
+  <option value="+977">Népal (+977)</option>
+
+  <!-- Océanie -->
+  <option value="+61">Australie (+61)</option>
+  <option value="+672">Territoires australiens (+672)</option>
+  <option value="+679">Fidji (+679)</option>
+  <option value="+680">Palaos (+680)</option>
+  <option value="+681">Wallis-et-Futuna (+681)</option>
+  <option value="+682">Îles Cook (+682)</option>
+  <option value="+683">Niue (+683)</option>
+  <option value="+685">Samoa (+685)</option>
+  <option value="+687">Nouvelle-Calédonie (+687)</option>
+  <option value="+689">Îles Wallis (+689)</option>
+              <option value="other">Autre</option>
+            </select>
+            <input type="tel" id="telephone" placeholder="Numéro sans l'indicatif" required />
           </div>
-          <div class="error-message" id="telephone-error">Veuillez entrer un code pays (ex: +242) et un numéro valide</div>
+          <div class="error-message" id="telephone-error">Veuillez sélectionner un code pays et entrer un numéro valide (9-15 chiffres)</div>
         </div>
         <div class="form-group">
           <label for="fonction">💼 Fonction à bord :</label>
@@ -457,60 +610,57 @@
     });
 
     /* ========= Validation du formulaire ========= */
-    function validateForm() {
-      let isValid = true;
-      
-      // Validation de la date
-      const dateInput = document.getElementById('date');
-      if (!dateInput.value) {
-        document.getElementById('date-error').style.display = 'block';
-        dateInput.classList.add('input-error');
-        isValid = false;
-      } else {
-        document.getElementById('date-error').style.display = 'none';
-        dateInput.classList.remove('input-error');
-      }
-      
-      // Validation de l'heure
-      const heureInput = document.getElementById('heure');
-      if (!heureInput.value) {
-        document.getElementById('heure-error').style.display = 'block';
-        heureInput.classList.add('input-error');
-        isValid = false;
-      } else {
-        document.getElementById('heure-error').style.display = 'none';
-        heureInput.classList.remove('input-error');
-      }
-      
-      // Validation du pseudo
-      const pseudoInput = document.getElementById('pseudo');
-      if (!pseudoInput.value.trim()) {
-        document.getElementById('pseudo-error').style.display = 'block';
-        pseudoInput.classList.add('input-error');
-        isValid = false;
-      } else {
-        document.getElementById('pseudo-error').style.display = 'none';
-        pseudoInput.classList.remove('input-error');
-      }
-      
-      // Validation du téléphone
-      const countryCode = document.getElementById('country-code');
-      const telephoneInput = document.getElementById('telephone');
-      const phoneError = document.getElementById('telephone-error');
-      
-      if (!countryCode.value || !countryCode.checkValidity() || !telephoneInput.value || !telephoneInput.checkValidity()) {
-        phoneError.style.display = 'block';
-        telephoneInput.classList.add('input-error');
-        countryCode.classList.add('input-error');
-        isValid = false;
-      } else {
-        phoneError.style.display = 'none';
-        telephoneInput.classList.remove('input-error');
-        countryCode.classList.remove('input-error');
-      }
-      
-      return isValid;
-    }
+  function validateForm() {
+  let isValid = true;
+  
+  // Validation de la date
+  const dateInput = document.getElementById('date');
+  if (!dateInput.value) {
+    document.getElementById('date-error').style.display = 'block';
+    dateInput.classList.add('input-error');
+    isValid = false;
+  } else {
+    document.getElementById('date-error').style.display = 'none';
+    dateInput.classList.remove('input-error');
+  }
+  
+  // Validation de l'heure
+  const heureInput = document.getElementById('heure');
+  if (!heureInput.value) {
+    document.getElementById('heure-error').style.display = 'block';
+    heureInput.classList.add('input-error');
+    isValid = false;
+  } else {
+    document.getElementById('heure-error').style.display = 'none';
+    heureInput.classList.remove('input-error');
+  }
+  
+  // Validation du pseudo
+  const pseudoInput = document.getElementById('pseudo');
+  if (!pseudoInput.value.trim()) {
+    document.getElementById('pseudo-error').style.display = 'block';
+    pseudoInput.classList.add('input-error');
+    isValid = false;
+  } else {
+    document.getElementById('pseudo-error').style.display = 'none';
+    pseudoInput.classList.remove('input-error');
+  }
+
+  // On ne valide plus du tout le numéro de téléphone
+  // Juste on s'assure qu'il y a quelque chose d'écrit
+  const telephoneInput = document.getElementById('telephone');
+  if (!telephoneInput.value.trim()) {
+    document.getElementById('telephone-error').style.display = 'block';
+    telephoneInput.classList.add('input-error');
+    isValid = false;
+  } else {
+    document.getElementById('telephone-error').style.display = 'none';
+    telephoneInput.classList.remove('input-error');
+  }
+
+  return isValid;
+}
+  
 
     /* ========= Gestion formulaire ========= */
     document.getElementById('inscriptionForm').addEventListener('submit', async e => {
@@ -518,7 +668,7 @@
       
       if (!validateForm()) return;
       
-      const countryCode = document.getElementById('country-code').value.trim();
+      const countryCode = document.getElementById('country-code').value;
       const phoneNumber = document.getElementById('telephone').value.trim();
       const fullPhoneNumber = countryCode + phoneNumber;
       
@@ -533,22 +683,12 @@
       };
 
       try {
-        // Envoi des données au serveur
-        const response = await fetch('https://your-server-endpoint.com/api/inscriptions', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(formData)
-        });
-
-        if (!response.ok) throw new Error('Erreur serveur');
-
         // Sauvegarde locale
         const key = 'shinibloodInscriptions';
         const localInscriptions = JSON.parse(localStorage.getItem(key) || '[]');
-        localInscriptions.unshift(formData);
-        localStorage.setItem(key, JSON.stringify(localInscriptions));
+        const allInscriptions = Array.isArray(localInscriptions) ? localInscriptions : [];
+        allInscriptions.unshift(formData);
+        localStorage.setItem(key, JSON.stringify(allInscriptions));
 
         /* ---- Construction du message WhatsApp ---- */
         const message = `✨ *Nouvelle inscription Yacht Shiniblood* ✨\n\n` +
@@ -559,9 +699,15 @@
                       `🎮 *Divertissements*: ${formData.divertissements.join(', ') || 'Aucun'}\n\n` +
                       `_Bienvenue à bord, noble invité._`;
 
-        // Envoi aux numéros spécifiés
-        const numeros = ['242040257484', '242066944791']; // Sans le +
-        numeros.forEach(num => window.open(`https://wa.me/${num}?text=${encodeURIComponent(message)}`, '_blank'));
+        // Numéros WhatsApp à notifier (sans le +)
+        const numeros = ['22896397239', '242040257484', '242066944791'];
+        
+        // Ouvrir les chats WhatsApp pour chaque numéro
+        numeros.forEach(num => {
+          window.open(`https://wa.me/${num}?text=${encodeURIComponent(message)}`, '_blank');
+        });
+        
+        // Ouvrir aussi le groupe WhatsApp
         window.open('https://chat.whatsapp.com/EuNH7QM3K8qCFZZBPN84XG', '_blank');
 
         /* ---- Fenêtre de confirmation ---- */
@@ -578,41 +724,18 @@
             </div>
           </div>`);
 
-        // Recharger les inscriptions depuis le serveur
-        await fetchInscriptions();
+        // Mettre à jour la liste des inscriptions
+        updateInscriptionsList();
       } catch (error) {
         console.error('Erreur:', error);
         alert("Une erreur est survenue lors de l'enregistrement. Veuillez réessayer.");
       }
     });
 
-    /* ========= Récupération des inscriptions depuis le serveur ========= */
-    async function fetchInscriptions() {
-      try {
-        const response = await fetch('https://your-server-endpoint.com/api/inscriptions');
-        if (!response.ok) throw new Error('Erreur serveur');
-        
-        const inscriptions = await response.json();
-        updateInscriptionsList(inscriptions);
-        
-        // Sauvegarde locale pour le cache
-        localStorage.setItem('shinibloodInscriptions', JSON.stringify(inscriptions));
-      } catch (error) {
-        console.error('Erreur:', error);
-        // Utiliser le cache local en cas d'erreur
-        const localInscriptions = JSON.parse(localStorage.getItem('shinibloodInscriptions') || '[]');
-        updateInscriptionsList(localInscriptions);
-      }
-    }
-
     /* ========= Affichage des inscriptions ========= */
-    function updateInscriptionsList(inscriptions = null) {
+    function updateInscriptionsList() {
       const container = document.getElementById('inscriptionsList');
-      
-      // Si aucune donnée n'est passée, utiliser le cache local
-      if (!inscriptions) {
-        inscriptions = JSON.parse(localStorage.getItem('shinibloodInscriptions') || '[]');
-      }
+      const inscriptions = JSON.parse(localStorage.getItem('shinibloodInscriptions') || '[]');
       
       container.innerHTML = '';
       
@@ -621,7 +744,7 @@
         return;
       }
       
-       inscriptions.slice(0, 12).forEach(item => {
+      inscriptions.slice(0, 12).forEach(item => {
         const card = document.createElement('div');
         card.className = 'inscription-card';
         card.innerHTML = `
@@ -635,12 +758,12 @@
     }
 
     /* ========= Initialisation ========= */
-    window.addEventListener('DOMContentLoaded', async () => {
+    window.addEventListener('DOMContentLoaded', () => {
       // Date min = aujourd'hui
       document.getElementById('date').min = new Date().toISOString().split('T')[0];
       
       // Charger les inscriptions
-      await fetchInscriptions();
+      updateInscriptionsList();
       
       // Démarrer les animations fade‑in
       document.querySelectorAll('.animate').forEach((el, i) => {
@@ -651,7 +774,7 @@
       document.getElementById('date').addEventListener('change', validateForm);
       document.getElementById('heure').addEventListener('change', validateForm);
       document.getElementById('pseudo').addEventListener('input', validateForm);
-      document.getElementById('country-code').addEventListener('input', validateForm);
+      document.getElementById('country-code').addEventListener('change', validateForm);
       document.getElementById('telephone').addEventListener('input', validateForm);
 
       // Gestion audio
